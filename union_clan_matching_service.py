@@ -3,9 +3,9 @@ from datetime import datetime, timedelta
 
 # Data import
 folder_name = '1005'
-today = '2023-10-05'
-target = '2023-10-01'
 date_format = "%Y-%m-%d"
+today = datetime.now().strftime(date_format)
+target = (datetime.now() - timedelta(days=4)).strftime(date_format)
 
 # Managing Constants
 valid_visit_correction = 0.5
