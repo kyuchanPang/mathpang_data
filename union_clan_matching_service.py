@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 # Data import
-folder_name = '1005'
+folder_name = 'data'
 date_format = "%Y-%m-%d"
 today = datetime.now().strftime(date_format)
 target = (datetime.now() - timedelta(days=4)).strftime(date_format)
