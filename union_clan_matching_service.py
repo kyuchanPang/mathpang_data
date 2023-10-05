@@ -2,9 +2,9 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 # Data import
-folder_name = '0922'
-today = '2023-09-22'
-target = '2023-09-18'
+folder_name = '1005'
+today = '2023-10-05'
+target = '2023-10-01'
 date_format = "%Y-%m-%d"
 
 # Managing Constants
@@ -102,13 +102,15 @@ union_clan = (clan_jelly.sort_values(by='clan_id')
               .assign(union_id=lambda x: x['union_name'].apply(lambda name: 1 if name == 'SOLA' else (2 if name == 'LUNA' else 3)))
               .merge(clan, left_on='clan_id', right_on='id')
               .loc[:, ['name', 'clan_id', 'jelly_composite', 'union_name', 'union_id']]
-              .rename(columns={'name': 'clanId', 'union_id': 'unionId'}))
+              .rename(columns={'clan_id': 'clanId', 'union_id': 'unionId'}))
 
-match_info = union_clan[['clanId', 'unionId']].astype({'unionId': int})
+match_info = union_clan[['clanId', 'unionId']].astype({'unionId': int, 'clanId': int})
 
 print(union_clan)
 print(match_info) # 완성
 print(union_list)
+
+print(clan_jelly.merge(clan, left_on = 'clan_id', right_on = 'id').head(30)) # 참고
 
 # write csv (아래 부분은 필요 없음)
 import os
