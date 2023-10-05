@@ -2,3 +2,5 @@
 
 # no .csv files
 *.csv
+*.DS_store
+*.idea
