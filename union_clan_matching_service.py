@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 folder_name = 'data'
 date_format = "%Y-%m-%d"
 today = datetime.now().strftime(date_format)
+
 target = (datetime.now() - timedelta(days=4)).strftime(date_format)
 
 # Managing Constants
@@ -119,5 +120,5 @@ output_directory = 'match_info'
 if not os.path.exists(output_directory):
     os.makedirs(output_directory)
 
-match_info_filename = f'match_info/match_info_{folder_name}.csv'
+match_info_filename = f'match_info/match_info_{str(today)}.csv'
 match_info.to_csv(match_info_filename, index=False, header=['clanId', 'unionId'])
