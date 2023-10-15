@@ -122,3 +122,4 @@ if not os.path.exists(output_directory):
 
 match_info_filename = f'match_info/match_info_{str(today)}.csv'
 match_info.to_csv(match_info_filename, index=False, header=['clanId', 'unionId'])
+print(match_info_filename)
