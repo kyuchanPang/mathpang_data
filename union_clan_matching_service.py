@@ -54,7 +54,6 @@ character_power = (character_jelly[['character_id', 'jelly_id', 'is_owned', 'exp
 
 character = character[['user_id', 'id']].rename(columns={'id': 'character_id'})
 
-access['accessed_at'] = pd.to_datetime(access['accessed_at']) + timedelta(hours=9)
 access['date'] = access['accessed_at'].dt.date
 
 user_visit = (access
