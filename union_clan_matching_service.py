@@ -29,7 +29,7 @@ jelly_filename = f'{folder_name}/jelly.csv'
 user = pd.read_csv(user_filename, low_memory=False)
 character = pd.read_csv(character_filename, low_memory=False)
 character_jelly = pd.read_csv(character_jelly_filename, low_memory=False)
-access = pd.read_csv(access_filename, low_memory=False)
+access = pd.read_csv(access_filename, parse_dates= ['accessed_at'], low_memory=False)
 jelly = pd.read_csv(jelly_filename, low_memory=False)
 
 # Data Preprocessing
