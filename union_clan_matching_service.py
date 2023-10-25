@@ -19,11 +19,11 @@ team_initial_point = [0, 0, 0]
 
 target = datetime.strptime(target, date_format).date()
 
-user_filename = f'{folder_name}/user.csv'
-character_filename = f'{folder_name}/character.csv'
-character_jelly_filename = f'{folder_name}/character_jelly.csv'
-access_filename = f'{folder_name}/access.csv'
-jelly_filename = f'{folder_name}/jelly.csv'
+user_filename = 'user.csv'
+character_filename = 'character.csv'
+character_jelly_filename = 'character_jelly.csv'
+access_filename = 'access.csv'
+jelly_filename = 'jelly.csv'
 
 user = pd.read_csv(user_filename, low_memory=False)
 character = pd.read_csv(character_filename, low_memory=False)
@@ -73,7 +73,7 @@ user_jelly = (user.merge(character, how='left', on='user_id')
               .fillna(no_visit_correction))
 
 # union_clan_match_service
-clan_filename = f'{folder_name}/clan.csv'
+clan_filename = 'clan.csv'
 clan = pd.read_csv(clan_filename)
 
 clan = clan[['id', 'name']]
@@ -118,6 +118,6 @@ output_directory = 'match_info'
 if not os.path.exists(output_directory):
     os.makedirs(output_directory)
 
-match_info_filename = f'match_info/match_info_{str(today)}.csv'
+match_info_filename = 'match_info/match_info_' + str(today) + '.csv'
 match_info.to_csv(match_info_filename, index=False, header=['clanId', 'unionId'])
 print(match_info_filename)
