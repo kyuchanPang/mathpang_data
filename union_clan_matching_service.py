@@ -17,7 +17,6 @@ user_jelly_valid_cnt = 3
 
 team_initial_point = [0, 0, 0]
 
-# 문자열을 datetime 객체로 변환
 target = datetime.strptime(target, date_format).date()
 
 user_filename = f'{folder_name}/user.csv'
@@ -71,7 +70,7 @@ user_jelly = (user.merge(character, how='left', on='user_id')
               .merge(user_visit, how='left', on='user_id')
               .merge(character_power, how='left', on='character_id')
               .drop('character_id', axis=1)
-              .fillna(no_visit_correction)) # 0.1 = 접속 안 한 유저
+              .fillna(no_visit_correction))
 
 # union_clan_match_service
 clan_filename = f'{folder_name}/clan.csv'
@@ -107,14 +106,14 @@ union_clan = (clan_jelly.sort_values(by='clan_id')
 match_info = union_clan[['clanId', 'unionId']].astype({'unionId': int, 'clanId': int})
 
 print(union_clan)
-print(match_info) # 완성
+print(match_info)
 print(union_list)
 
-print(clan_jelly.merge(clan, left_on = 'clan_id', right_on = 'id').head(30)) # 참고
+print(clan_jelly.merge(clan, left_on = 'clan_id', right_on = 'id').head(30))
 
-# write csv (아래 부분은 필요 없음)
+
 import os
-# 'match_info' 디렉터리가 존재하지 않는 경우 생성
+
 output_directory = 'match_info'
 if not os.path.exists(output_directory):
     os.makedirs(output_directory)
