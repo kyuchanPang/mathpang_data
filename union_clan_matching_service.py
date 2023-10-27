@@ -19,11 +19,11 @@ team_initial_point = [0, 0, 0]
 
 target = datetime.strptime(target, date_format).date()
 
-user_filename = 'user.csv'
-character_filename = 'character.csv'
-character_jelly_filename = 'character_jelly.csv'
-access_filename = 'access.csv'
-jelly_filename = 'jelly.csv'
+user_filename = folder_name + '/user.csv'
+character_filename = folder_name + '/character.csv'
+character_jelly_filename = folder_name + '/character_jelly.csv'
+access_filename = folder_name + '/access.csv'
+jelly_filename = folder_name + '/jelly.csv'
 
 user = pd.read_csv(user_filename, low_memory=False)
 character = pd.read_csv(character_filename, low_memory=False)
