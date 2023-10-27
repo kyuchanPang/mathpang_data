@@ -73,7 +73,7 @@ user_jelly = (user.merge(character, how='left', on='user_id')
               .fillna(no_visit_correction))
 
 # union_clan_match_service
-clan_filename = folder_name + 'clan.csv'
+clan_filename = folder_name + '/clan.csv'
 clan = pd.read_csv(clan_filename)
 
 clan = clan[['id', 'name']]
