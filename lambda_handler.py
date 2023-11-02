@@ -1,19 +1,22 @@
 import json
 from datetime import datetime, timedelta
 import pandas as pd
+import os
+
+os.mkdir('/tmp/data')
 
 def write_csv(filename, content):
-    f = open('/tmp/' + filename, 'w')
+    f = open('/tmp/data/' + filename, 'w')
     f.write(content)
     f.close()
 
 def read_csv_as_string(filename):
-    f = open('/tmp/' + filename, 'r')
+    f = open(filename, 'r')
 
     content = ''
 
     for line in f.readlines():
-        content += line
+        content += line.strip() + '\n'
 
     f.close()
     return content
