@@ -3,7 +3,8 @@ from datetime import datetime, timedelta
 import pandas as pd
 import os
 
-os.mkdir('/tmp/data')
+os.makedirs('/tmp/data', exist_ok=True)
+os.makedirs('/tmp/match_info', exist_ok=True)
 
 def write_csv(filename, content):
     f = open('/tmp/data/' + filename, 'w')
@@ -60,6 +61,13 @@ def handler(event, lambda_context):
     character_jelly = pd.read_csv(character_jelly_filename, low_memory=False)
     access = pd.read_csv(access_filename, parse_dates= ['accessed_at'], low_memory=False)
     jelly = pd.read_csv(jelly_filename, low_memory=False)
+    
+    import os
+    os.remove(user_filename)
+    os.remove(character_filename)
+    os.remove(character_jelly_filename)
+    os.remove(access_filename)
+    os.remove(jelly_filename)
 
     # Data Preprocessing
     user = (user[['id', 'clan_id']]
@@ -105,6 +113,8 @@ def handler(event, lambda_context):
     # union_clan_match_service
     clan_filename = folder_name + '/clan.csv'
     clan = pd.read_csv(clan_filename)
+    
+    os.remove(clan_filename)
 
     clan = clan[['id', 'name']]
 
@@ -141,12 +151,7 @@ def handler(event, lambda_context):
 
     print(clan_jelly.merge(clan, left_on = 'clan_id', right_on = 'id').head(30))
 
-
-    import os
-
     output_directory = '/tmp/match_info'
-    if not os.path.exists(output_directory):
-        os.makedirs(output_directory)
 
     match_info_filename = '/tmp/match_info/match_info_' + str(today) + '.csv'
     match_info.to_csv(match_info_filename, index=False, header=['clanId', 'unionId'])
