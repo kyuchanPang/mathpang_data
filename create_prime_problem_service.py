@@ -1,3 +1,4 @@
+import csv
 import random
 
 
@@ -62,10 +63,13 @@ def prime_number_problem_maker(num):
     print(string1 + str(num) + string2)
 
 
+
 # 1.7 Greatest Common Factor Type 1
-def greatest_common_factor_problems_maker():
+def greatest_common_factor_problems_maker(trial):
     record = []
-    while len(record) < 100:
+    total_array = []
+    while len(total_array) < trial:
+        array = []
         g = random.randrange(2, 16)
         parts1 = random.randrange(1, 10)
         parts2 = random.randrange(1, 10)
@@ -76,20 +80,19 @@ def greatest_common_factor_problems_maker():
 
             gcd = greatest_common_factor(num1, num2)
 
-
-            string1 = f"    \item Find the common factor of {num1} and {num2}"
-            string2 = "\n    \\begin{enumerate}\n"
-            string3 = "        \\item $"
-            string4 = f"{gcd}$*"
-            string5 = "\n    \end{enumerate}"
-
-            print(string1 + string2 + string3 + string4 + string5)
+            array.append(f"Find the greatest common factor of {num1} and {num2}")
+            array.append(str(gcd))
+        if array:
+            total_array.append(array)
+    return total_array
 
 
 # 1.7.2 Common Factor Type 2
-def greatest_common_factor_problems_maker2():
+def greatest_common_factor_problems_maker2(trial):
     record = []
-    while len(record) < 30:
+    total_array = []
+    while len(record) < trial:
+        array = []
         g = 1
         parts1 = random.randrange(10, 50)
         parts2 = random.randrange(10, 50)
@@ -100,20 +103,44 @@ def greatest_common_factor_problems_maker2():
 
             gcd = greatest_common_factor(num1, num2)
 
+            gcd = greatest_common_factor(num1, num2)
 
-            string1 = f"    \item Find the common factor of {num1} and {num2}"
-            string2 = "\n    \\begin{enumerate}\n"
-            string3 = "        \\item $"
-            string4 = f"{gcd}$*"
-            string5 = "\n    \end{enumerate}"
-
-            print(string1 + string2 + string3 + string4 + string5)
+            array.append(f"Find the greatest common factor of {num1} and {num2}")
+            array.append(str(gcd))
+        if array:
+            total_array.append(array)
+    return total_array
 
 
-# 1.8
-def greatest_common_factor_3_problems_maker():
-    return None
+def greatest_common_factor_3_problems_maker(trial):
+    record = []
+    total_array = []
+    while len(total_array) < trial:
+        array = []
+        g = random.randrange(1, 16)
+        parts1 = random.randrange(1, 10)
+        parts2 = random.randrange(1, 10)
+        parts3 = random.randrange(1, 10)
+        num1 = g * parts1
+        num2 = g * parts2
+        num3 = g * parts3
+        if len({parts1, parts2, parts3}) == 3 and (num1, num2, num3) not in record:
+            record.append({num1, num2, num3})
+
+            gcd = greatest_common_factor_3(num1, num2, num3)
+
+            array.append(f"Find the greatest common factor of {num1}, {num2} and {num3}")
+            array.append(str(gcd))
+
+        if array:
+            total_array.append(array)
+    return total_array
+
 
 
 # main
-greatest_common_factor_problems_maker()
+result = greatest_common_factor_3_problems_maker(50)
+
+with open("gcd_problem.csv", "w+") as my_csv:
+    csvWriter = csv.writer(my_csv, delimiter= ',')
+    csvWriter.writerows(result)
